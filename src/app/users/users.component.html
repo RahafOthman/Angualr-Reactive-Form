@@ -1,0 +1,49 @@
+<!--Add new user part-->
+<button  class="btn new-client w-25 border shadow rounded text-center" routerLink="/form-component"
+style="margin-left:65% ; margin-top: 50px;"
+>Add New User</button>
+<router-outlet></router-outlet>
+
+
+<!--display users data table-->
+<div class="mt-5 mx-auto" style="width: 85%; ">
+<!-- <h2 class="" style="margin: 0px 150px 50px ;">Users</h2>-->
+<table class="table table-light table-hover">
+    <thead class="thead-dark text-center">
+        <th>ID</th>
+        <th>Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Picture</th>
+    </thead>
+    <tbody *ngIf="Users">
+        <tr *ngFor="let user of Users.data" class="text-center" >
+            <td class=" m-auto" (click)="getUserById(user.id)">{{user.id}}</td>
+            <td class=" m-auto text-capitalize">{{user.title}}</td>
+            <td class=" m-auto text-capitalize">{{user.firstName}}</td>
+            <td class=" m-auto text-capitalize">{{user.lastName}}</td>
+            <td style="width:10%;">
+                <img src="{{user.picture}}" alt="..." width="100" height="100" class="rounded-circle"/>
+            <td><button type="button" class="btn btn-outline-info" (click)="toUpdateForm(user.id)">Update</button></td>
+            <td><button type="button" class="btn btn-outline-danger" (click)="deleteUser(user.id)">Delete</button></td>
+            <td>
+                <button type="button" class="btn btn-outline-dark" (click)="getUserById(user.id)">Get User by Id</button>
+                    <!--<div *ngIf="userById">
+                        {{userById.id}}
+                    </div>-->
+            </td>
+          
+        </tr>
+    </tbody>
+</table>
+</div>
+<!--buttons add or update-->
+
+<!--    <button class="btn new-client">Clear</button>
+    <div *ngIf="add; then add else update"></div>
+<ng-template #add >
+    <button class="btn new-client" (click)="createUser(firstname.value,lastname.value,email.value)" >Add New User</button>
+</ng-template>(click)="updateUser()"
+<ng-template #update>
+    <button class="btn new-client" #updateUser>update</button>
+</ng-template> --> 

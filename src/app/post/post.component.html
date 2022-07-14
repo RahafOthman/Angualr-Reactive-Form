@@ -1,0 +1,36 @@
+<div class="w-100">
+    <div class="mt-5 mx-auto ">
+        <div class="m-1 mt-3 p-3 px-5" >
+            <button class="btn user-btn text-center shadow " (click)="createPost()" style="width: 20%;">Add New Post</button>
+        </div>
+        <table class="table table-light table-hover">
+            <thead class="thead-light text-center">
+                <th>ID</th>
+                <th>text</th>
+                <th>image</th>
+                <th>likes</th>
+                <th>tags</th>
+                <th>publishDate</th>
+                <th>owner</th>
+            </thead>
+           
+            <tbody *ngIf="posts">
+                <tr *ngFor="let post of posts" class="text-center" >
+                    <td>{{post.id}}</td>
+                    <td>{{post.text}}</td>
+                    <td>{{post.image}}</td>
+                    <td>{{post.likes}}</td>
+                    <td>{{post.tags}}</td>
+                    <td>{{post.publishDate}}</td>
+                    <td>{{post.owner.firstName}}</td>
+                    <td><button type="button" class="btn btn-outline-info" (click)="toUpdate(post.id)">Update</button></td>
+                    <td><button type="button" class="btn btn-outline-danger" (click)="deletePost(post.id)">Delete</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                
+            </tfoot>
+        </table>
+    </div>
+    
+</div>

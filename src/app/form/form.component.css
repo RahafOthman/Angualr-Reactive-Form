@@ -1,0 +1,49 @@
+.new-client{
+    background-color: #e3f2fd;
+    margin-left: 400px;
+    margin-top: 10px;
+}
+input.ng-invalid.ng-touched {
+    border: .5px solid rgb(156, 31, 31) !important;
+}
+
+input.ng-valid.ng-touched{
+    border: .5px solid rgb(14, 128, 31) !important;
+}
+
+.required{
+    color:rgb(156, 31, 31);
+    font-size: 14px;
+    padding-left: 47px;
+}
+.user-btn:hover{
+    cursor: pointer;
+    background: #C0C0C0;
+    color:#e3f2fd !important;
+}
+.user-btn{
+    color:black;
+    background-color: #e3f2fd;
+}
+.back-btn{
+    width:30rem;
+    background:#a09f9f ;
+}
+.back-btn:hover{
+    cursor: pointer;
+    background: #e3f2fd;
+    color:black !important;
+}
+.label{
+    width: 35%;
+    background:#dddddd;
+}
+.select-input { 
+   width: 90%;
+
+   margin-top: 5px;
+}
+.input-style{
+    width: 55%;
+    background:#dddddd;
+}

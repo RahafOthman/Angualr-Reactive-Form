@@ -1,0 +1,40 @@
+<div  *ngIf="UserById " class="w-100">
+   <h3 class="text-center p-3">User Card</h3>
+   <div class="card mx-auto my-4" style="width:30rem;background:#e9e8e8 ;">
+      <img src="{{UserById.picture}}"  alt="user Picture" width="200" height="200" class="mx-auto my-2">
+      <div class="card-body">
+         <h5 class=" ms-3 text-capitalize" style="color: #4e94c6;">{{UserById.title}}</h5>
+         <div class="w-100 mx-auto">
+            <label class="border rounded text-uppercase m-3 p-3" style="width: 35%;background:#dddddd;">id</label>
+            <label class="border rounded text-capitalize p-3" style="width: 55%;background:#dddddd;">{{UserById.id}}</label>
+         </div> 
+         <div class="w-100 mx-auto">
+            <label class="border rounded text-capitalize m-3 p-3" style="width: 35%;background:#dddddd;">first name</label>
+            <label class="border rounded text-capitalize p-3" style="width: 55%;background:#dddddd;">{{UserById.firstName}}</label>
+         </div> 
+         <div class="w-100 mx-auto">
+            <label class="border rounded text-capitalize m-3 p-3" style="width: 35%;background:#dddddd;">last name</label>
+            <label class="border rounded text-capitalize p-3" style="width: 55%;background:#dddddd;">{{UserById.lastName}}</label>
+         </div>
+      </div>
+   </div>
+   <div class="card-container mx-auto">
+      <div class="upper-container">
+         <div class="image-container">
+            <img src="{{UserById.picture}}" />
+         </div>
+      </div>
+      <div class="lower-container">
+         <div>
+            <h3 class="mt-3 text-capitalize">{{UserById.title}}</h3>
+            <h4 class="mt-3 text-capitalize">{{UserById.firstName}} {{UserById.lastName}}</h4>
+         </div>
+         <div class="mt-3">
+            <p class="text-capitalize">{{UserById.id}}</p>
+         </div>
+         <div>
+            <a href="#" class="btn">View profile</a>
+         </div>
+      </div>
+   </div>
+</div>

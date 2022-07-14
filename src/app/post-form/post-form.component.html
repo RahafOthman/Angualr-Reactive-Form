@@ -1,0 +1,114 @@
+<div class="mx-auto mt-5 border w-50 shadow p-3 rounded APIRouting text-center"> 
+    <h3 *ngIf="!check">Add New Post</h3>  
+    <h3 *ngIf="check">Update Post</h3>
+    
+    
+    <!--post form -->
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="p-3">
+         <!--owner section-->
+         <div class="mb-3 p-2" >
+        <label for="owner" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">owner name</label>    
+        <input type="text" 
+        class="input col-4 border rounded p-3"
+        style="width: 55%;background:#dddddd;" 
+        id="owner" 
+        name="owner"
+        formControlName="owner"
+       
+        >     
+        </div>
+
+        <div class="card mx-auto my-4" style="width:30rem;background:#e9e8e8 ;">
+          <div class="card-body">
+            <!--text section-->
+            <div class="mb-3 p-2" >
+                <label for="Text" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">Post Text</label>    
+                <input type="text" 
+                class="input col-4 border rounded p-3"
+                style="width: 55%;background:#dddddd;" 
+                id="Text" 
+                name="Text" required
+                formControlName="Text"
+                >
+                <!--text vaidation-->
+                <div *ngIf="!Text.valid && Text.touched" class="required text-capitalize ps-0" >
+                    <div *ngIf="Text.errors?.['required']">
+                        Text required
+                    </div>
+                    <div *ngIf="Text.errors?.['minlength'] || Text.errors?.['maxlength']">
+                        Text must be in range 6-50 characters.
+                    </div>
+                </div>
+            </div>
+            <!--image section-->
+            <div class="mb-3 p-2" >
+                <label for="image" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">image</label>    
+                <input type="text" 
+                class="input col-4 border rounded p-3"
+                style="width: 55%;background:#dddddd;" 
+                id="image" 
+                name="image" 
+                formControlName="image"
+                >
+                <div *ngIf="!image.valid && image.touched" class="required text-capitalize" class="required text-capitalize" style="padding-right: 36px;">
+                    <div *ngIf="image.errors?.['required']">
+                        add image url
+                    </div>
+                </div>
+            </div>
+            <!--likes section-->
+            <div class="mb-3 p-2" >
+                <label for="likes" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">likes</label>    
+                <input type="number" 
+                class="input col-4 border rounded p-3"
+                style="width: 55%;background:#dddddd;" 
+                id="likes" 
+                name="likes" required
+                formControlName="likes"
+                >
+                <div *ngIf="!likes.valid && likes.touched" class="required text-capitalize" >
+                    <div *ngIf="likes.errors?.['required']" style="margin-left: 30px;">
+                        likes must be 0 or more.
+                    </div>
+                    <div *ngIf="likes.errors?.['min']" style="margin-left: 30px;">
+                        likes must be 0 or more.
+                    </div>
+                </div>
+            </div>
+            <!--tages section -->
+            <div class="mb-3 p-2" formArrayName="tags" style="padding-left: 40px !important;" >  
+                <button (click)="addTag()" class="user-btn col-4 text-capitalize p-1 rounded shadow w-50" style="margin-left: 174px;
+                margin-bottom: 10px;">add tag</button>
+                <div *ngFor="let tag of tags.controls; index as i">
+                    <div class="row">
+                        <label for="tags" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">tags {{i}}</label>    
+                        <input type="text" 
+                        class="input col-4 border rounded p-3 m-1"
+                        style="width: 40%;background:#dddddd;" 
+                        id="tags" 
+                        name="tags" required
+                        [formControlName]="i"
+                        >
+                        <button (click)="removeTag(i)" class="user-btn col-4 text-capitalize my-2 rounded shadow" style="width:10%;">X</button>
+
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+            <div *ngIf="success" class="alert alert-success">
+                Successfully Done
+            </div>
+            
+            <div class="d-flex justify-content-end m-1 mt-3 p-3">
+                <button type="submit" class="btn back-btn w-25 mx-3" (click)="back()" >Back</button>
+                <button type="submit" class="btn text-center shadow user-btn w-25" >{{ add == "new" ? 'Create' : 'Update' }}</button>   
+            </div>
+        </div>
+    </div>
+    </form>
+    <div *ngIf="formInvalid" class="alert alert-danger text-capitalize">
+        Can't submit, Please fill the form
+    </div>
+</div>

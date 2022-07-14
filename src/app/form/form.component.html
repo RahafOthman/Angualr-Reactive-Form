@@ -1,0 +1,163 @@
+<div class="mx-auto mt-5 border w-50 shadow p-3 rounded APIRouting text-center"> 
+    <h3 *ngIf="!check">Add New User</h3>  
+    <h3 *ngIf="check">Update User</h3>
+
+
+<form  [formGroup]="userForm" (ngSubmit)="onSubmit()" class="p-3">
+    <div class="card mx-auto my-4" style="width:30rem;background:#e9e8e8 ;">
+      <div class="card-body">
+        <!--first name section-->
+        <div class="mb-3 p-2" >
+            <label for="first" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">First name</label>    
+            <input type="text" 
+            class="input col-4 border rounded p-3"
+             style="width: 55%;background:#dddddd;" 
+             id="FirstName" 
+             name="FirstName" required
+             formControlName= "FirstName"
+            >
+            
+            <div *ngIf="!FirstName.valid && FirstName.touched" class="required">
+
+                <div *ngIf="FirstName.errors?.['required']">
+                    First Name is required
+                </div>
+                <div *ngIf="FirstName.errors?.['minlength']">
+                    First Name must be at least 2 characters 
+                </div>
+            </div>
+        </div>
+        <!--last name-->
+        <div class="mb-3 p-2">
+            <label for="lastName" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">
+                Last Name
+            </label>
+            <input type="text" class="input col-4 border rounded p-3" style="width: 55%;background:#dddddd;" 
+            id="LastName" name="lastName" required
+            formControlName= "LastName"
+            >
+            <div *ngIf="!LastName.valid && LastName.touched" class="required">
+                <div *ngIf="LastName.errors?.['required']">
+                    Last Name is required
+                </div>
+                <div *ngIf="LastName.errors?.['minlength']">
+                    First Name must be at least 2 characters 
+                </div>
+            </div>
+        </div>
+
+        <!--email section-->
+        <div class="mb-3 p-2">
+            <label for="exampleInputPassword1" class="form-label col-4 text-capitalize m-1 p-3 rounded" style="width: 35%;background:#dddddd;">
+            Email
+            </label>
+            <input type="email" class="input col-4 border rounded p-3" style="width: 55%;background:#dddddd;" 
+            id="Email" name="Email" required
+            formControlName= "Email" >
+            <div *ngIf="!Email.valid && Email.touched" class="required">
+                <div *ngIf="Email.errors?.['required']">
+                    Email is required
+                </div>
+                <div *ngIf="Email.errors?.['email']">
+                    Email not correct
+                </div>
+            </div>
+            
+        </div>
+        
+        <div *ngIf="check; then full" ></div>
+
+        <ng-template #full>
+            <!--picture section-->
+            <div class="mb-3 rounded p-2">
+                <label for="picture" class="form-label col-4 text-capitalize m-1 p-2 rounded" style="width: 35%;background:#dddddd;">
+                    picture
+                </label> 
+                <div class="d-flex py-2 px-4">
+                    <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png" width="100" height="100"> 
+                    <input type="file" class="ps-3 pt-5" id="Picture"
+                     name="Picture" 
+                     formControlName= "Picture" 
+                    style="width: 60%;height: 10%;">
+                </div>
+            </div>
+            <!--title section-->
+            <div class="mb-3 p-2 ps-4" >
+                <div class="d-flex">
+                    <label for="Title" class="form-label col-4 border text-capitalize m-1 p-2 py-3 label rounded">Title</label>
+                    <select  name="Title"  id="Title" 
+                     class="form-control input-style border rounded" 
+                     formControlName= "Title"
+                     style="padding-top:5px;"
+                     required  
+                     >
+                        <option *ngFor="let Title of titles" [value]="Title">{{Title}}</option>
+                    </select>
+                </div>
+            </div>
+            <!--gender section-->
+            <div class="mb-3 p-2 ps-4">
+                <div class="d-flex">
+                    <label for="Gender" class="input col-4 border m-1 p-2 py-3 label rounded" >Gender</label>
+                    <select  name="Gender"  id="Gender"  
+                    class="form-control input-style border rounded"
+                     style="padding-top:30px;"
+                     formControlName = "Gender"
+                    >
+                        <option *ngFor="let Gender of genders" [value]="Gender">{{Gender}}</option>
+                    </select>
+                </div>    
+            </div>
+            <!--phone section-->
+            <div class="mb-3 p-2">
+                <label for="phone" class="form-label col-4 text-capitalize m-1 p-3 label rounded">
+                    phone
+                </label>
+                <input type="text" class="col-4 border rounded p-3 input-style" 
+                id="Phone" name="Phone"
+                fromControlName= "Phone"
+                >
+               
+            </div>
+
+        <!--data of birth-->
+           <div class="mb-3 p-2">
+                <label for="birthday" class="form-label col-4 text-capitalize m-1 p-3 label rounded" >
+                    date Of Birth
+                </label>
+                <input type="date" id="birtDateOfBirthhday" class="col-4 border rounded p-3 input-style" 
+                name="DateOfBirth"
+                fromControlName= "DateOfBirth"
+                >
+            </div>
+        <!--location section-->
+            <div class="mb-3 p-2">
+                <label for="Location" class="form-label col-4 text-capitalize m-1 p-3 label rounded" >
+                    location
+                </label>
+                <input type="text" class="input col-4 border rounded p-3 input-style" name="Location"
+                fromControlName= "Location"
+                 >
+            </div>
+        </ng-template>
+
+        <div *ngIf="success" class="alert alert-success">
+            Successfully Done
+        </div>
+        <div *ngIf="emailErrorVar" class="alert alert-danger">
+            Email Used Before 
+        </div>
+        <div *ngIf="!userForm.valid && userForm.touched && userForm.errors?.['NameError']" class="required text-capitalize">
+            First Name must not equal Last Name! 
+        </div>
+        <div class="d-flex justify-content-end m-1 mt-3 p-3">
+            <button type="submit" class="btn back-btn w-25 mx-3" (click)="back()" >Back</button>
+            <button type="submit" class="btn text-center shadow user-btn w-25" >{{ name == "new" ? 'Create' : 'Update' }}</button>
+        </div>
+    </div>
+    
+</div>
+
+</form>
+
+</div>

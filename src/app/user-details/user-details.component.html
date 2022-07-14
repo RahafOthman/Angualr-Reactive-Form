@@ -1,0 +1,15 @@
+<!--User details page-->
+<div class="d-flex"  style="background:#bae2fe;" >
+    <div class="d-flex flex-column my-5 h-100" style="width: 15%;">
+        <a (click)="goToDetails()" class="text-center shadow text-decoration-none p-2 user-btn text-capitalize my-3" style="color: black">user</a>
+        <a (click)="goToPost()" class="text-center shadow text-decoration-none p-2 user-btn text-capitalize my-3" style="color: black" >post</a>
+        <a (click)="back()" class="text-center shadow text-decoration-none p-2 user-btn text-capitalize my-3" style="color: black">
+            back
+        </a>
+    </div>
+    <div class="shadow border" style="background: #fff; width: 80%;" >   
+        <router-outlet></router-outlet>
+    </div>    
+</div>
+
+
